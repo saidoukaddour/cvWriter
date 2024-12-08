@@ -1,0 +1,118 @@
+.success-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 2rem;
+}
+
+.success-content {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.success-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.success-icon {
+  font-size: 5rem;
+  color: #00ff87;
+  margin-bottom: 1.5rem;
+}
+
+.success-icon.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #00ff87, #60efff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.success-content p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.success-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.action-button svg {
+  font-size: 1.3rem;
+}
+
+.action-button.download {
+  background: linear-gradient(45deg, #00ff87, #60efff);
+  color: #0f172a;
+}
+
+.action-button.edit {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 135, 0.2);
+}
+
+@media (max-width: 480px) {
+  .success-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .success-content {
+    padding: 2rem;
+  }
+  
+  .success-content h1 {
+    font-size: 2rem;
+  }
+} 

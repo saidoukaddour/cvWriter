@@ -1,0 +1,137 @@
+.cta-section {
+  padding: 8rem 2rem;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before,
+.cta-section::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.cta-section::before {
+  background: #00ff87;
+  top: -200px;
+  right: -200px;
+}
+
+.cta-section::after {
+  background: #60efff;
+  bottom: -200px;
+  left: -200px;
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(45deg, #00ff87, #60efff);
+  color: #0f172a;
+  padding: 1.2rem 2.5rem;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 255, 135, 0.2);
+}
+
+.cta-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 255, 135, 0.3);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+.cta-features {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 5rem;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.feature-text {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 6rem 1.5rem;
+  }
+
+  .cta-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
+  }
+
+  .cta-features {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .feature-number {
+    font-size: 2rem;
+  }
+} 
