@@ -7,12 +7,14 @@ const Features = () => {
     {
       icon: <FaEdit />,
       title: "Easy online resume builder",
-      description: "Create an awesome resume in minutes, without leaving your web browser."
+      description: "Create an awesome resume in minutes, without leaving your web browser.",
+      featured: true
     },
     {
       icon: <FaSpellCheck />,
       title: "Automatic spell-checker",
-      description: "Our built-in spell-checker takes care of the grammar for you. Create a resume with zero typos or errors."
+      description: "Our built-in spell-checker takes care of the grammar for you. Create a resume with zero typos or errors.",
+      featured: true
     },
     {
       icon: <FaShieldAlt />,
@@ -22,7 +24,8 @@ const Features = () => {
     {
       icon: <FaPencilAlt />,
       title: "Automatic summary generator",
-      description: "Create a powerful resume profile or cover letter in one click. Writer's block is no longer an obstacle. Try for free!"
+      description: "Create a powerful resume profile or cover letter in one click. Writer's block is no longer an obstacle. Try for free!",
+      featured: true
     },
     {
       icon: <FaFileAlt />,
@@ -53,17 +56,22 @@ const Features = () => {
 
   return (
     <section className="features">
-      <h2>Features designed to help you win your dream job</h2>
-      <div className="features-grid">
-        {features.map((feature, index) => (
-          <div key={index} className="feature-card">
-            <div className="feature-icon">
-              {feature.icon}
+      <div className="features-content">
+        <h2>Features designed to help you win your dream job</h2>
+        <div className="features-grid">
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className={`feature-card ${feature.featured ? 'featured' : ''}`}
+            >
+              <div className="feature-icon">
+                {feature.icon}
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
             </div>
-            <h3>{feature.title}</h3>
-            <p>{feature.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
