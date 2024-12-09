@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -8,30 +8,26 @@ import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
 import CallToAction from './components/CallToAction';
 import Features from './components/Features';
+import CVBuilderPage from './pages/CVBuilder/CVBuilderPage';
 import './App.css';
 
 function App() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   return (
     <Router>
       <div className="App">
-        <Navbar onCreateCV={() => setIsDialogOpen(true)} />
+        <Navbar onCreateCV={() => window.location.href = '/create-cv'} />
         <Routes>
           <Route path="/" element={
             <>
-              <Hero 
-                isDialogOpen={isDialogOpen} 
-                onOpenDialog={() => setIsDialogOpen(true)}
-                onCloseDialog={() => setIsDialogOpen(false)}
-              />
+              <Hero onCreateCV={() => window.location.href = '/create-cv'} />
               <Templates />
               <Testimonials />
               <Features />
-              <CallToAction onCreateCV={() => setIsDialogOpen(true)} />
+              <CallToAction onCreateCV={() => window.location.href = '/create-cv'} />
             </>
           } />
           <Route path="/success" element={<Success />} />
+          <Route path="/create-cv" element={<CVBuilderPage />} />
         </Routes>
         <Footer />
       </div>

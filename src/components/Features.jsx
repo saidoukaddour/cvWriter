@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaEdit, FaSpellCheck, FaShieldAlt, FaPencilAlt, FaFileAlt, FaRobot, FaUserCheck, FaFileWord, FaEnvelope } from 'react-icons/fa';
-import './Features.css';
 
 const Features = () => {
   const features = [
@@ -55,20 +54,35 @@ const Features = () => {
   ];
 
   return (
-    <section className="features">
-      <div className="features-content">
-        <h2>Features designed to help you win your dream job</h2>
-        <div className="features-grid">
+    <section className="py-8 sm:py-12 md:py-16 bg-[rgba(15,23,42,0.98)] relative w-full">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 md:px-8">
+        <h2 className="text-center mb-8 sm:mb-12 text-[1.8rem] sm:text-[2rem] md:text-[2.2rem] text-white font-bold max-w-[600px] mx-auto leading-tight">
+          Features designed to help you win your dream job
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-auto gap-4 md:gap-6">
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className={`feature-card ${feature.featured ? 'featured' : ''}`}
+              className={`bg-white/[0.02] border border-white/[0.05] rounded-xl p-4 sm:p-5 md:p-6 transition-all duration-300 hover:bg-white/[0.05] hover:-translate-y-[5px] hover:border-[#60efff]/20
+                ${index === 0 ? 'sm:col-span-2' : ''}
+                ${index === 1 ? 'sm:col-span-2' : ''}
+                ${index === 2 ? 'sm:col-span-1' : ''}
+                ${index === 3 ? 'sm:col-span-2' : ''}
+                ${index === 4 ? 'sm:col-span-1' : ''}
+                ${index === 5 ? 'sm:col-span-1' : ''}
+                ${index === 6 ? 'sm:col-span-1' : ''}
+                ${index === 7 ? 'sm:col-span-1' : ''}
+                ${index === 8 ? 'sm:col-span-1' : ''}`}
             >
-              <div className="feature-icon">
+              <div className="text-[1.25rem] sm:text-[1.35rem] md:text-[1.5rem] text-[#00ff87] mb-3 sm:mb-4 inline-block drop-shadow-[0_0_10px_rgba(0,255,135,0.3)]">
                 {feature.icon}
               </div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
+              <h3 className="text-white text-[1rem] sm:text-[1.05rem] md:text-[1.1rem] mb-2 sm:mb-3 font-semibold">
+                {feature.title}
+              </h3>
+              <p className="text-[#94a3b8] text-[0.8rem] sm:text-[0.825rem] md:text-[0.85rem] leading-relaxed">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
