@@ -1,15 +1,46 @@
 import React, { useState } from 'react';
-import { FaUser, FaBriefcase, FaGraduationCap, FaLaptopCode, FaUsers, FaLanguage, FaForward } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { FaUser, FaBriefcase, FaGraduationCap, FaLaptopCode, FaUsers, FaLanguage, FaForward, FaTimes } from 'react-icons/fa';
 import PersonalInfoForm from '../../components/CVBuilder/PersonalInfoForm';
 import ExperienceForm from '../../components/CVBuilder/ExperienceForm';
 import EducationForm from '../../components/CVBuilder/EducationForm';
 import SkillsForm from '../../components/CVBuilder/SkillsForm';
 import SoftSkillsForm from '../../components/CVBuilder/SoftSkillsForm';
 import LanguagesForm from '../../components/CVBuilder/LanguagesForm';
-import './CVBuilderPage.css';
+
+const ConfirmDialog = ({ isOpen, onClose, onConfirm }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-bg-card p-6 rounded-lg max-w-md w-full mx-4 shadow-xl">
+        <h3 className="text-xl font-semibold text-white mb-2">Are you sure?</h3>
+        <p className="text-gray-400 mb-6">
+          Your progress will be lost if you leave now. This action cannot be undone.
+        </p>
+        <div className="flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm text-gray-300 hover:text-white bg-bg-input hover:bg-opacity-80 rounded-lg transition-all duration-300"
+          >
+            Continue Editing
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 rounded-lg transition-all duration-300"
+          >
+            Yes, Cancel CV
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const CVBuilderPage = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [formData, setFormData] = useState({
     personalInfo: {},
     experience: [],
@@ -92,9 +123,35 @@ const CVBuilderPage = () => {
     // Add your submission logic here
   };
 
+  const handleCancel = () => {
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmCancel = () => {
+    navigate('/');
+  };
+
+  // Add function to handle step change with scroll
+  const handleStepChange = (newStep) => {
+    setCurrentStep(newStep);
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-nav-bg px-4 py-20 md:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        {/* Cancel Button */}
+        <div className="flex justify-end mb-6">
+          <button
+            onClick={handleCancel}
+            className="flex items-center gap-2 px-4 py-2.5 text-white bg-red-600 hover:bg-red-700 rounded-lg transition-all duration-300 shadow-lg hover:shadow-red-600/25"
+          >
+            <FaTimes className="w-4 h-4" />
+            Cancel CV Creation
+          </button>
+        </div>
+
         {/* Mobile Steps Progress */}
         <div className="md:hidden mb-6">
           <div className="bg-bg-card rounded-lg p-4">
@@ -177,7 +234,7 @@ const CVBuilderPage = () => {
                     </div>
                     <button
                       type="button"
-                      onClick={() => setCurrentStep(prev => prev + 1)}
+                      onClick={() => handleStepChange(currentStep + 1)}
                       className="px-4 py-2 text-sm bg-gray-700 text-white rounded-md hover:bg-gray-600 transition-colors flex items-center gap-2"
                     >
                       Skip step
@@ -195,7 +252,7 @@ const CVBuilderPage = () => {
                   {currentStep > 1 && (
                     <button
                       type="button"
-                      onClick={() => setCurrentStep(prev => prev - 1)}
+                      onClick={() => handleStepChange(currentStep - 1)}
                       className="px-4 py-2 text-sm text-white bg-bg-input rounded-md hover:bg-opacity-80 transition-colors"
                     >
                       Previous
@@ -205,7 +262,7 @@ const CVBuilderPage = () => {
                   {currentStep < steps.length ? (
                     <button
                       type="button"
-                      onClick={() => setCurrentStep(prev => prev + 1)}
+                      onClick={() => handleStepChange(currentStep + 1)}
                       className="px-4 py-2 text-sm text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition-colors"
                     >
                       Next
@@ -224,6 +281,13 @@ const CVBuilderPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Confirmation Dialog */}
+        <ConfirmDialog 
+          isOpen={showConfirmDialog}
+          onClose={() => setShowConfirmDialog(false)}
+          onConfirm={handleConfirmCancel}
+        />
       </div>
     </div>
   );
